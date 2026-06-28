@@ -121,7 +121,7 @@ function CustomerApp() {
 
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col font-sans select-none antialiased">
-      <div className="flex-grow flex flex-col pb-[160px] md:pb-8">
+      <div className="flex-grow flex flex-col pb-[160px]">
         
         {/* Top Sticky App Bar */}
         <Header
@@ -168,7 +168,7 @@ function CustomerApp() {
 
                     {/* Floating Sticky Action Bar: Review Order */}
                     {totalCartItems > 0 && (
-                      <div className="fixed bottom-[90px] md:bottom-[24px] left-0 w-full px-container-padding z-40 pointer-events-none flex justify-center animate-fadeIn">
+                      <div className="fixed bottom-[90px] left-0 w-full px-container-padding z-40 pointer-events-none flex justify-center animate-fadeIn">
                         <button
                           onClick={() => setIsCartOpen(true)}
                           className="w-full max-w-[400px] pointer-events-auto bg-primary text-on-primary rounded-xl px-4 py-4 flex justify-between items-center shadow-[0px_4px_20px_rgba(0,0,0,0.15)] hover:bg-primary-container hover:text-on-primary-container transition-colors active:scale-95 cursor-pointer"

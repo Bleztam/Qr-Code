@@ -21,6 +21,9 @@ import {
   Award,
   ChevronRight,
   RefreshCw,
+  QrCode,
+  Printer,
+  Utensils,
 } from 'lucide-react';
 import { MenuItem } from '../types';
 import { useStore } from '../store';
@@ -54,13 +57,15 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
 
   const onUpdatePaymentConfig = setPaymentConfig;
   // Navigation tabs
-  const [activeSubTab, setActiveSubTab] = useState<'Menu Management' | 'Payment Info' | 'Analytics'>('Menu Management');
+  const [activeSubTab, setActiveSubTab] = useState<'Menu Management' | 'Payment Info' | 'Analytics' | 'QR Generator'>('Menu Management');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [tableCount, setTableCount] = useState<number>(10);
   
   // Mobile menu sidebar toggle
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Form states
+  const [isMobileFormOpen, setIsMobileFormOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formName, setFormName] = useState('');
   const [formPrice, setFormPrice] = useState('');
@@ -88,6 +93,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
     setFormDescription(item.description);
     setFormImage(item.image);
     setFormInStock(item.inStock);
+    setIsMobileFormOpen(true);
   };
 
   // Clear form
@@ -99,6 +105,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
     setFormDescription('');
     setFormImage('');
     setFormInStock(true);
+    setIsMobileFormOpen(false);
   };
 
   // Save / Update item
@@ -162,10 +169,10 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
   const averageOrderValue = Math.round(totalRevenue / totalOrdersCount);
 
   return (
-    <div className="bg-surface h-screen flex overflow-hidden w-full text-on-surface">
+    <div className="bg-surface h-screen print:h-auto flex print:block overflow-hidden print:overflow-visible w-full text-on-surface">
       
       {/* Sidebar Navigation (Hidden on mobile unless toggled) */}
-      <aside className={`w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col shrink-0 transition-transform duration-300 md:translate-x-0 ${
+      <aside className={`print:hidden w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col shrink-0 transition-transform duration-300 md:translate-x-0 ${
         isSidebarOpen ? 'translate-x-0 fixed inset-y-0 left-0 z-50' : '-translate-x-full absolute md:relative'
       }`}>
         <div className="p-container-padding border-b border-outline-variant flex items-center justify-between">
@@ -227,6 +234,18 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
             <BarChart3 className="w-4.5 h-4.5" />
             Analytics
           </button>
+
+          <button
+            onClick={() => { setActiveSubTab('QR Generator'); setIsSidebarOpen(false); }}
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg font-body-lg text-body-lg w-full text-left transition-colors cursor-pointer ${
+              activeSubTab === 'QR Generator'
+                ? 'bg-primary text-on-primary'
+                : 'text-on-surface hover:bg-surface-container'
+            }`}
+          >
+            <QrCode className="w-4.5 h-4.5" />
+            QR Generator
+          </button>
         </nav>
 
         <div className="p-container-padding border-t border-outline-variant">
@@ -241,10 +260,10 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden w-full bg-background">
+      <div className="flex-1 flex flex-col overflow-y-auto print:overflow-visible w-full bg-background print:bg-white relative">
         
         {/* Mobile Header */}
-        <header className="flex flex-col items-center w-full px-container-padding bg-surface border-b border-outline-variant sticky top-0 z-40 md:hidden shrink-0">
+        <header className="print:hidden flex flex-col items-center w-full px-container-padding bg-surface border-b border-outline-variant sticky top-0 z-40 md:hidden shrink-0">
           <div className="flex items-center justify-between w-full h-16">
             <button
               onClick={() => setIsSidebarOpen(true)}
@@ -264,13 +283,22 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
 
         {/* Dynamic Inner Screens */}
         {activeSubTab === 'Menu Management' && (
-          <div className="flex-1 flex flex-col lg:flex-row overflow-hidden w-full">
+          <div className="flex-1 flex flex-col lg:flex-row w-full gap-6 p-container-padding lg:p-stack-lg max-w-7xl mx-auto items-start">
             {/* Left Side: Menu Items List (65%) */}
-            <section className="flex-1 lg:w-[65%] flex flex-col overflow-y-auto p-container-padding lg:p-stack-lg gap-stack-lg border-r border-outline-variant w-full">
+            <section className="flex-1 lg:w-[65%] flex flex-col gap-stack-lg w-full">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h1 className="font-headline-lg text-headline-lg text-on-surface">Menu Items</h1>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage your current offerings.</p>
+                <div className="flex items-center justify-between w-full sm:w-auto">
+                  <div>
+                    <h1 className="font-headline-lg text-headline-lg text-on-surface">Menu Items</h1>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage your current offerings.</p>
+                  </div>
+                  <button
+                    onClick={() => { handleClearForm(); setIsMobileFormOpen(true); }}
+                    className="lg:hidden flex items-center gap-1.5 bg-primary text-on-primary px-3 py-2 rounded-md font-label-caps text-label-caps hover:bg-primary-container transition-colors shrink-0"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Add New</span>
+                  </button>
                 </div>
                 {/* Category Filter Pills */}
                 <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
@@ -348,20 +376,34 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
             </section>
 
             {/* Right Side: Form Sidebar (35%) */}
-            <aside className="w-full lg:w-[35%] bg-surface-container-lowest border-l border-outline-variant flex flex-col h-full overflow-y-auto shrink-0 z-10">
-              <div className="p-container-padding border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-20 flex justify-between items-center">
+            <aside className={`${
+              isMobileFormOpen ? 'fixed inset-0 z-50 flex bg-surface-container-lowest' : 'hidden'
+            } lg:flex lg:inset-auto w-full lg:w-[35%] lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:bg-surface-container-lowest lg:border lg:border-outline-variant lg:rounded-xl flex-col shrink-0 lg:z-10 overflow-hidden`}>
+              <div className="p-container-padding border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-20 flex justify-between items-center shrink-0">
                 <h2 className="font-headline-md text-headline-md text-on-surface">
                   {editingId ? 'Edit Item' : 'Add Item'}
                 </h2>
-                {editingId && (
+                <div className="flex items-center gap-4">
+                  {editingId && (
+                    <button
+                      type="button"
+                      onClick={handleClearForm}
+                      className="text-xs font-semibold text-outline hover:text-on-surface cursor-pointer"
+                    >
+                      Reset Form
+                    </button>
+                  )}
                   <button
-                    onClick={handleClearForm}
-                    className="text-xs font-semibold text-outline hover:text-on-surface"
+                    type="button"
+                    onClick={() => setIsMobileFormOpen(false)}
+                    className="lg:hidden text-on-surface p-1.5 bg-surface-container hover:bg-surface-container-high rounded-full cursor-pointer"
                   >
-                    Reset Form
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                   </button>
-                )}
+                </div>
               </div>
+
+              <div className="overflow-y-auto flex-1 flex flex-col">
 
               <form onSubmit={handleSaveItem} className="p-container-padding flex flex-col gap-stack-md flex-grow">
                 {/* Image URL with Preset selection */}
@@ -487,7 +529,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                       onChange={(e) => setFormInStock(e.target.checked)}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary" />
+                    <div className="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-transform after:duration-200 after:ease-in-out peer-checked:bg-primary" />
                   </label>
                 </div>
 
@@ -508,6 +550,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                   </button>
                 </div>
               </form>
+              </div>
             </aside>
           </div>
         )}
@@ -570,7 +613,6 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
           </div>
         )}
 
-        {/* Analytics Dashboard */}
         {activeSubTab === 'Analytics' && (
           <div className="flex-1 p-4 lg:p-6 overflow-y-auto w-full animate-fadeIn bg-background">
             <h1 className="font-headline-lg text-headline-lg text-on-surface">Analytics</h1>
@@ -726,6 +768,106 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                   View full order ledger <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* QR Code Asset Generator */}
+        {activeSubTab === 'QR Generator' && (
+          <div className="flex-grow p-4 lg:p-6 w-full animate-fadeIn bg-background print:bg-white print:p-0">
+            {/* Control Panel: Hidden when printing */}
+            <div className="print:hidden mb-6 bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm">
+              <h2 className="font-headline-lg text-headline-lg text-on-surface">Printable Table QR Codes</h2>
+              <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5 mb-6">
+                Generate and print table assets for your restaurant.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-end gap-4 max-w-xl">
+                <div className="flex flex-col gap-1.5 flex-1">
+                  <label className="font-label-caps text-label-caps text-on-surface-variant" htmlFor="table-count-input">
+                    Total Number of Tables
+                  </label>
+                  <input
+                    type="number"
+                    id="table-count-input"
+                    min="1"
+                    max="100"
+                    value={tableCount}
+                    onChange={(e) => setTableCount(Math.max(1, parseInt(e.target.value) || 1))}
+                    className="w-full bg-surface-bright border border-outline-variant rounded-md px-3 py-2 font-body-lg text-body-lg text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                
+                <button
+                  onClick={() => window.print()}
+                  className="bg-primary hover:bg-primary/95 text-on-primary font-label-caps text-label-caps px-5 py-3 rounded-md transition-colors shadow-sm flex items-center gap-2 cursor-pointer shrink-0"
+                >
+                  <Printer className="w-4 h-4" />
+                  Print All Cards
+                </button>
+              </div>
+            </div>
+
+            {/* Printable Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 print:grid-cols-2 print:gap-6 print:p-0 print:m-0 w-full">
+              {Array.from({ length: tableCount }).map((_, idx) => {
+                const tableNum = idx + 1;
+                // Live production URL structure
+                const prodUrl = `${window.location.origin}/?table=${tableNum}`;
+                const qrCodeSrc = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&format=svg&data=${encodeURIComponent(prodUrl)}`;
+                
+                return (
+                  <div
+                    key={tableNum}
+                    className="bg-surface-container-lowest print:bg-white border border-outline-variant print:border-black/30 rounded-2xl p-6 shadow-sm flex flex-col items-center justify-between aspect-[3.5/5] max-w-[320px] mx-auto print:mx-0 print:w-[3.5in] print:h-[5.0in] print:page-break-inside-avoid print:shadow-none print:rounded-none"
+                    style={{ pageBreakInside: 'avoid' }}
+                  >
+                    {/* Header Branding */}
+                    <div className="text-center w-full">
+                      <div className="flex items-center justify-center gap-2 text-primary">
+                        <Utensils className="w-5 h-5 text-primary print:text-black" />
+                        <span className="font-headline-lg-mobile text-headline-lg-mobile text-primary print:text-black tracking-tight font-extrabold">
+                          FreshServe
+                        </span>
+                      </div>
+                      <div className="bg-primary/10 text-primary print:text-black print:bg-transparent print:border print:border-black/30 font-label-caps text-label-caps text-xs py-1 px-3 rounded-full mt-3 inline-block font-bold">
+                        TABLE {tableNum}
+                      </div>
+                    </div>
+
+                    {/* QR Code Container */}
+                    <div className="my-4 p-3 bg-white border border-outline-variant/50 rounded-xl shadow-inner flex items-center justify-center w-[160px] h-[160px] print:border-black/20 print:shadow-none">
+                      <img
+                        src={qrCodeSrc}
+                        alt={`QR Code for Table ${tableNum}`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+
+                    {/* Bottom Instructions (Addis Ababa Context) */}
+                    <div className="w-full text-center border-t border-outline-variant/30 print:border-black/20 pt-3">
+                      <p className="font-label-caps text-label-caps text-[9px] text-outline print:text-black mb-2.5 tracking-wide">
+                        Order & Pay Instantly
+                      </p>
+                      
+                      <ol className="text-left font-body-sm text-body-sm text-on-surface-variant print:text-black space-y-1 max-w-[220px] mx-auto text-[11px] leading-tight">
+                        <li className="flex gap-1.5">
+                          <span className="font-bold text-primary print:text-black">1.</span>
+                          <span>Scan to browse menu</span>
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="font-bold text-primary print:text-black">2.</span>
+                          <span>Build & confirm order</span>
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="font-bold text-primary print:text-black">3.</span>
+                          <span>Pay via Telebirr or CBE</span>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
