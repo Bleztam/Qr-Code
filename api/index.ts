@@ -1,74 +1,74 @@
 import express from 'express';
 import cors from 'cors';
-import { db } from './db';
+import { sql } from './db';
+import { createRouteHandler } from 'uploadthing/express';
+import { uploadRouter } from './uploadthing';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+// Mount Uploadthing Express route
+app.use(
+  "/api/uploadthing",
+  createRouteHandler({
+    router: uploadRouter,
+    config: {
+      // It uses the env variable UPLOADTHING_TOKEN by default
+    },
+  })
+);
+
 // GET all menu items
-app.get('/api/menu', (req, res) => {
-  db.all('SELECT * FROM menu_items', (err, rows) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
-    // SQLite returns booleans as 0 or 1. We need to convert them back to boolean
-    const formattedRows = rows.map((row: any) => ({
-      ...row,
-      inStock: row.inStock === 1,
-      custom: row.custom === 1,
-    }));
-    res.json(formattedRows);
-  });
+app.get('/api/menu', async (req, res) => {
+  try {
+    const rows = await sql`SELECT * FROM menu_items`;
+    res.json(rows);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // POST a new menu item
-app.post('/api/menu', (req, res) => {
+app.post('/api/menu', async (req, res) => {
   const { id, name, description, price, category, image, inStock, custom } = req.body;
-  const stmt = db.prepare('INSERT INTO menu_items VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-  stmt.run(id, name, description, price, category, image, inStock ? 1 : 0, custom ? 1 : 0, function (err: any) {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
+  try {
+    await sql`
+      INSERT INTO menu_items (id, name, description, price, category, image, "inStock", custom)
+      VALUES (${id}, ${name}, ${description}, ${price}, ${category}, ${image}, ${inStock}, ${custom})
+    `;
     res.json({ success: true, id });
-  });
-  stmt.finalize();
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // PUT (update) an existing menu item
-app.put('/api/menu/:id', (req, res) => {
+app.put('/api/menu/:id', async (req, res) => {
   const { name, description, price, category, image, inStock, custom } = req.body;
   const id = req.params.id;
-  const stmt = db.prepare(`
-    UPDATE menu_items 
-    SET name = ?, description = ?, price = ?, category = ?, image = ?, inStock = ?, custom = ?
-    WHERE id = ?
-  `);
-  stmt.run(name, description, price, category, image, inStock ? 1 : 0, custom ? 1 : 0, id, function (err: any) {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
+  try {
+    await sql`
+      UPDATE menu_items 
+      SET name = ${name}, description = ${description}, price = ${price}, category = ${category}, image = ${image}, "inStock" = ${inStock}, custom = ${custom}
+      WHERE id = ${id}
+    `;
     res.json({ success: true });
-  });
-  stmt.finalize();
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // DELETE a menu item
-app.delete('/api/menu/:id', (req, res) => {
+app.delete('/api/menu/:id', async (req, res) => {
   const id = req.params.id;
-  const stmt = db.prepare('DELETE FROM menu_items WHERE id = ?');
-  stmt.run(id, function (err: any) {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
+  try {
+    await sql`DELETE FROM menu_items WHERE id = ${id}`;
     res.json({ success: true });
-  });
-  stmt.finalize();
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // For local testing

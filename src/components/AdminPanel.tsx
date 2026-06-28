@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { MenuItem } from '../types';
 import { useStore } from '../store';
+import { UploadButton } from '../utils/uploadthing';
 
 interface AdminPanelProps {
   onExitAdmin: () => void;
@@ -381,31 +382,25 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                       </button>
                     </div>
                   ) : (
-                    <div className="border-2 border-dashed border-outline-variant rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-surface-container-low transition-colors cursor-pointer bg-surface-bright mb-2">
-                      <ImageIcon className="text-outline mb-2 w-7 h-7" />
-                      <p className="font-body-sm text-body-sm text-on-surface">Select a preset or enter URL below</p>
-                    </div>
-                  )}
-
-                  {/* Preset quick selection */}
-                  {!formImage && (
-                    <div className="flex gap-1.5 overflow-x-auto pb-1.5 mb-2 scrollbar-hide">
-                      {presetImages.map((preset) => (
-                        <button
-                          key={preset.name}
-                          type="button"
-                          onClick={() => setFormImage(preset.url)}
-                          className="bg-surface-container hover:bg-primary-fixed text-on-surface px-2.5 py-1 rounded-md text-[9px] font-label-caps text-label-caps tracking-wide shrink-0 cursor-pointer border border-outline-variant/30"
-                        >
-                          {preset.name}
-                        </button>
-                      ))}
+                    <div className="border border-outline-variant rounded-lg p-4 mb-2 flex justify-center bg-surface-bright">
+                      <UploadButton
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res) => {
+                          if (res && res.length > 0) {
+                            setFormImage(res[0].url);
+                            alert("Upload Completed");
+                          }
+                        }}
+                        onUploadError={(error: Error) => {
+                          alert(`ERROR! ${error.message}`);
+                        }}
+                      />
                     </div>
                   )}
 
                   <input
                     type="text"
-                    placeholder="Enter absolute Image URL (Optional)"
+                    placeholder="Or enter absolute Image URL manually"
                     value={formImage}
                     onChange={(e) => setFormImage(e.target.value)}
                     className="w-full bg-surface-bright border border-outline-variant rounded-md px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-outline-variant"

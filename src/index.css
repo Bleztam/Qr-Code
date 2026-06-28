@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "@uploadthing/react/styles.css";
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
