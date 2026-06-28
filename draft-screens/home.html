@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FreshServe - Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#e1e3e4", "on-primary-container": "#86af99", "outline-variant": "#c1c8c2", "on-secondary-fixed-variant": "#354c3b", "tertiary-container": "#00452d", "on-secondary-container": "#506856", "secondary-fixed": "#cee9d3", "surface-container-high": "#e7e8e9", "inverse-surface": "#2e3132", "on-secondary-fixed": "#092012", "on-error": "#ffffff", "on-tertiary-fixed": "#002113", "on-error-container": "#93000a", outline: "#717973", "surface-tint": "#3f6653", "surface-container-low": "#f3f4f5", secondary: "#4c6452", "on-background": "#191c1d", "primary-fixed-dim": "#a5d0b9", "on-tertiary-fixed-variant": "#005236", "tertiary-fixed": "#a0f4c8", "surface-container": "#edeeef", "secondary-container": "#cce6d0", "surface-container-lowest": "#ffffff", "on-surface-variant": "#414844", "inverse-on-surface": "#f0f1f2", "on-tertiary-container": "#64b68e", error: "#ba1a1a", "primary-fixed": "#c1ecd4", "on-primary-fixed": "#002114", "secondary-fixed-dim": "#b3cdb7", "on-secondary": "#ffffff", "surface-bright": "#f8f9fa", "inverse-primary": "#a5d0b9", background: "#f8f9fa", tertiary: "#002d1c", "on-surface": "#191c1d", surface: "#f8f9fa", "on-primary-fixed-variant": "#274e3d", "surface-container-highest": "#e1e3e4", "tertiary-fixed-dim": "#85d7ad", "on-tertiary": "#ffffff", "surface-dim": "#d9dadb", "primary-container": "#1b4332", "on-primary": "#ffffff", primary: "#012d1d", "error-container": "#ffdad6"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {unit: "4px", "container-padding": "16px", "gutter-grid": "12px", "stack-sm": "8px", "stack-md": "16px", "stack-lg": "24px"}, fontFamily: {"headline-md": ["Inter"], "label-caps": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"], "body-sm": ["Inter"], "price-display": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-md": ["20px", {lineHeight: "28px", fontWeight: "600"}], "label-caps": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "body-lg": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "price-display": ["18px", {lineHeight: "24px", fontWeight: "700"}]}}}};</script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen flex flex-col pb-[160px]">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface w-full sticky top-0 z-40 border-b border-outline-variant dark:border-outline flex flex-col items-center px-container-padding">
+<div class="flex justify-between items-center w-full max-w-[1200px] h-[64px]">
+<button class="text-primary dark:text-primary-fixed hover:opacity-90 active:scale-95 transition-transform flex items-center justify-center w-12 h-12 rounded-full">
+<span class="material-symbols-outlined">restaurant</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed-dim tracking-tight">FreshServe</h1>
+<button class="text-primary dark:text-primary-fixed hover:opacity-90 active:scale-95 transition-transform flex items-center justify-center w-12 h-12 rounded-full">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<!-- Category Chips -->
+<div class="sticky top-[64px] z-30 bg-surface/95 backdrop-blur-sm border-b border-surface-variant py-3 px-container-padding overflow-x-auto hide-scrollbar">
+<div class="flex gap-2 w-max mx-auto max-w-[1200px] justify-start md:justify-center">
+<button class="px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-caps text-label-caps transition-all active:scale-95">Burgers</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant transition-all active:scale-95 font-label-caps text-label-caps">Traditional</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant transition-all active:scale-95 font-label-caps text-label-caps">Sides</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-variant transition-all active:scale-95 font-label-caps text-label-caps">Soft Drinks</button>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-grow px-container-padding py-stack-lg mx-auto w-full max-w-[1200px]">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter-grid md:gap-stack-lg">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+<div class="w-full aspect-square bg-surface-variant relative">
+<img class="w-full h-full object-cover" data-alt="A mouth-watering, perfectly grilled special beef burger stacked with fresh crisp lettuce, red tomatoes, melted cheese, and a secret creamy sauce on a toasted artisan bun. The food photography is brightly lit in a modern, clean light-mode aesthetic, emphasizing freshness and appetizing high-contrast details against a clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNT29Z2-zGLRAG6vfw061O87BkzzcLky2pDAvLRH-payZJk_aOYPdBzS_IPSOW6J1dDk_2-Sk3M9QuV20Yg2JQV6f-ad7fF9q73vA_EcgVhHeQa-_ABZa53JB4C09VB0kTvx7iTCFwoU4OTZ7aNOwMFdmdDt3tJntU3q1hZ6fB5WO-cPZFvw824u-iUMxEzvBPrd01OsRyqiXOnmn9YpM6dDfjA8DHFTIFSa-X-tvgKFa6RDdZ6Yb711VWOvRBjIZQVzFriF_DI4x7"/>
+</div>
+<div class="p-3 md:p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[16px] md:text-headline-md text-on-surface line-clamp-1 mb-1">Special Burger</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 flex-grow mb-3">Juicy beef patty with secret sauce</p>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-price-display text-price-display text-primary">350 ETB</span>
+<button class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+<div class="w-full aspect-square bg-surface-variant relative">
+<img class="w-full h-full object-cover" data-alt="A vibrant overhead shot of Doro Wat, a traditional Ethiopian spicy chicken stew rich in deep red berbere sauce, featuring tender chicken pieces and a whole hard-boiled egg. The dish is presented elegantly in an authentic clay bowl. The lighting is clean and modern, highlighting the rich textures and bold appetizing colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIVLsKpvi8zbT4AYC8mb4v0ZJ05lkRp3PqmRmlzS9KUL34FUVjWKkM5qKymlAMVnssKVxJdbg4ssHQoxr1vWAvISnKHy9hHretlJtelp7HNG8oj6TGPumtoq2muD0GTPrXRvO-VDLPuby3v9atDCH_Y5rZCjTWFbFZFEtzvApn_GWZ_5Uco03CK6HxBardV5bLyBLPAnF9JYcemcnuqxFFWjw5jFf7geC6Tb8x9_EB67-l9KADZMymtI40xrSeuMtrQnwFysgqM5RJ"/>
+</div>
+<div class="p-3 md:p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[16px] md:text-headline-md text-on-surface line-clamp-1 mb-1">Doro Wat</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 flex-grow mb-3">Traditional Ethiopian spicy chicken stew</p>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-price-display text-price-display text-primary">450 ETB</span>
+<button class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+<div class="w-full aspect-square bg-surface-variant relative">
+<img class="w-full h-full object-cover" data-alt="A generous portion of crispy golden hand-cut French fries served in a minimal white ceramic bowl. A small ramekin of vivid red ketchup sits beside it. The image utilizes a clean-plate aesthetic with bright, even lighting that emphasizes the crisp texture and appetizing golden color of the potatoes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDFKzFVcsAsdvk-iXR4V94zCeIjMiKHccP_aTUGWOwDHtQF6j9QqoT0VcXa7WYzxRzu1dChMZMkv6-_TqwdlB2k8L0o7vkkRp2GX4wTsMsAO_KFg4fwLC_RgfRBxfTm4rxuFWYMas9CsSiJ71cgm03H3bewzxxsb30HvlzoYZsRoU1yfrNI5Z_XzSjfvhMHInRTSGE8lQeuBITEWNqq7RIYLywKjF1egF_lGSAJLxbkqq8_7P-c9hMvh6XEszZV4NYgkgGR1HgYDbr"/>
+</div>
+<div class="p-3 md:p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[16px] md:text-headline-md text-on-surface line-clamp-1 mb-1">French Fries</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 flex-grow mb-3">Crispy golden hand-cut potatoes</p>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-price-display text-price-display text-primary">120 ETB</span>
+<button class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+<div class="w-full aspect-square bg-surface-variant relative">
+<img class="w-full h-full object-cover" data-alt="A traditional Ethiopian berele flask filled with bright, golden-yellow Tej (fermented honey wine). The glass is elegantly shaped and the liquid glows warmly under crisp, modern lighting. The background is a clean, minimal white surface that allows the vibrant color of the authentic beverage to pop visually." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk-574_5UBzxujAdFS_Y2uqzCBbcnzYpW96Eu5dPvrlnJIVyTBMpFFqdnpUvcCVweZYgYA8dR7Msf9LVRQ0lxLFxXNPifTKCD2IVTfLghfn5UaC1pFMng2nc6-R06NQeMPQyPp4pk_YWCvCjRutjBB3yZO73NB-fXSMLQSXUJ_t8tpOOJN_022iQPvrfw_4-rfXRZjkNbhG6IG9gshxLuIi12FWv6D5MS66aJ4SkQU4xat9IKABXUKiocGlTUEM6BNFPVqe1bHnHr8"/>
+</div>
+<div class="p-3 md:p-4 flex flex-col flex-grow">
+<h3 class="font-headline-md text-[16px] md:text-headline-md text-on-surface line-clamp-1 mb-1">Tej (Honey Wine)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 flex-grow mb-3">Homemade traditional fermented honey wine</p>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-price-display text-price-display text-primary">200 ETB</span>
+<button class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container active:scale-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Action Bar (Review Order) -->
+<div class="fixed bottom-[90px] md:bottom-[24px] left-0 w-full px-container-padding z-40 pointer-events-none flex justify-center">
+<button class="w-full max-w-[400px] pointer-events-auto bg-primary text-on-primary rounded-xl px-4 py-4 flex justify-between items-center shadow-[0px_4px_20px_rgba(0,0,0,0.15)] hover:bg-primary-container transition-colors active:scale-95">
+<div class="flex items-center gap-3">
+<div class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center font-label-caps text-label-caps text-white">2</div>
+<span class="font-headline-md text-headline-md text-white">Review Order</span>
+</div>
+<span class="font-price-display text-price-display text-white">800 ETB</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="bg-primary dark:bg-primary-container fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 rounded-t-xl shadow-[0px_-4px_20px_rgba(0,0,0,0.08)] md:hidden">
+<button class="flex flex-col items-center justify-center text-on-primary bg-white/10 rounded-xl p-2 scale-98 transition-all w-16">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-caps text-[10px] mt-1">Menu</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-primary/70 p-2 hover:bg-white/5 transition-all w-16">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-caps text-[10px] mt-1">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-primary/70 p-2 hover:bg-white/5 transition-all w-16">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

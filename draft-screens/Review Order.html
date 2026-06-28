@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review Order</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-variant": "#e1e3e4", "on-primary-container": "#86af99", "outline-variant": "#c1c8c2", "on-secondary-fixed-variant": "#354c3b", "tertiary-container": "#00452d", "on-secondary-container": "#506856", "secondary-fixed": "#cee9d3", "surface-container-high": "#e7e8e9", "inverse-surface": "#2e3132", "on-secondary-fixed": "#092012", "on-error": "#ffffff", "on-tertiary-fixed": "#002113", "on-error-container": "#93000a", outline: "#717973", "surface-tint": "#3f6653", "surface-container-low": "#f3f4f5", secondary: "#4c6452", "on-background": "#191c1d", "primary-fixed-dim": "#a5d0b9", "on-tertiary-fixed-variant": "#005236", "tertiary-fixed": "#a0f4c8", "surface-container": "#edeeef", "secondary-container": "#cce6d0", "surface-container-lowest": "#ffffff", "on-surface-variant": "#414844", "inverse-on-surface": "#f0f1f2", "on-tertiary-container": "#64b68e", error: "#ba1a1a", "primary-fixed": "#c1ecd4", "on-primary-fixed": "#002114", "secondary-fixed-dim": "#b3cdb7", "on-secondary": "#ffffff", "surface-bright": "#f8f9fa", "inverse-primary": "#a5d0b9", background: "#f8f9fa", tertiary: "#002d1c", "on-surface": "#191c1d", surface: "#f8f9fa", "on-primary-fixed-variant": "#274e3d", "surface-container-highest": "#e1e3e4", "tertiary-fixed-dim": "#85d7ad", "on-tertiary": "#ffffff", "surface-dim": "#d9dadb", "primary-container": "#1b4332", "on-primary": "#ffffff", primary: "#012d1d", "error-container": "#ffdad6"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {unit: "4px", "container-padding": "16px", "gutter-grid": "12px", "stack-sm": "8px", "stack-md": "16px", "stack-lg": "24px"}, fontFamily: {"headline-md": ["Inter"], "label-caps": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["Inter"], "headline-lg-mobile": ["Inter"], "body-sm": ["Inter"], "price-display": ["Inter"], headline: ["Inter"], display: ["Inter"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-md": ["20px", {lineHeight: "28px", fontWeight: "600"}], "label-caps": ["12px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "body-lg": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "price-display": ["18px", {lineHeight: "24px", fontWeight: "700"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .slide-up {
+            animation: slideUp 0.3s ease-out forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-lg min-h-screen relative overflow-hidden flex flex-col items-center justify-end md:justify-center">
+<!-- Faux Background Map/Context -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-30" data-alt="A stylized, modern light-mode map interface showing a clean urban layout. Subtle forest green highlights mark points of interest against a predominantly pristine white and pale gray background. The aesthetic is clean, efficient, and appetizing, resembling a premium delivery app tracking view." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnKmFRVqs4Ba152dBS52PR8pgp3pNVImXbo2Tfn9QPQoo0hwhOBnObsUpQKEE45ikszY1ZOIoZ0RysZqw1kJ6rOO92AxXj5js56WvGhPUrP01h1sRR1_eDP0tZwQTsYSko99ksalr0MTe6efscewO0uEqliOie0yuABLzKBZs6Jrfquut_NbOXBE_SSSt8fXc_cth2QD6s5_0xO3bNaXZ0U-_8C5-_LZvhW-4aIpqnnbqvQ7QEr8uEbtcVXetYtqBManV1AX4cu8HB')"></div>
+</div>
+<!-- Background Tint Overlay -->
+<div class="absolute inset-0 bg-black/10 z-10"></div>
+<!-- Review Order Slide-up Modal -->
+<div class="z-20 w-full max-w-[600px] bg-surface rounded-t-[24px] md:rounded-[24px] shadow-lg flex flex-col h-[751px] md:h-auto slide-up md:animate-none md:my-8 relative">
+<!-- Header -->
+<div class="px-container-padding py-stack-md flex justify-between items-center border-b border-surface-variant sticky top-0 bg-surface rounded-t-[24px]">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Your Order</h1>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors text-on-surface">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Scrollable Item List -->
+<div class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-stack-md">
+<!-- Item: Special Burger -->
+<div class="flex items-center gap-gutter-grid bg-surface-bright rounded-xl p-3 border border-outline-variant/30">
+<div class="w-[80px] h-[80px] rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A mouth-watering gourmet burger with a perfectly toasted brioche bun, fresh crisp green lettuce, ripe red tomatoes, and melted cheese dripping over a thick beef patty. Photographed from a slightly high angle against a pristine white background with soft, natural lighting, highlighting the appetizing textures and vibrant colors. Clean plate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0hqv9UcPFQiku40F89mIMe2zxeHMvZlL8jTUCwRQuOrNXljuFIVuNauLH1UGCpogj0zas6sBCgK1rJgkch0fYl_1pO6gQJS2I0WUtvgaEa2rc3okZl739TIsgUNW6xlyDWMyPmsOUITefXCti9U2nyQPYeaCVlz87uFqRfxw0D-OEy3L97p7H2_4In6Ya-WD-jBy9MDC0Ygvmt3gwQBC1LNFGvROAY0wfkVSsM-zRvzQJCppkV_pKgWGzcIseMxyzxvSjvF-UBf_q"/>
+</div>
+<div class="flex-1 flex flex-col justify-between h-full">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Special Burger</h2>
+<p class="font-body-sm text-body-sm text-outline">Classic beef patty with fresh greens.</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-price-display text-price-display text-primary">350 ETB</span>
+<div class="flex items-center gap-3 bg-surface-container rounded-full px-2 py-1">
+<button class="text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<span class="font-body-lg text-body-lg font-semibold w-4 text-center">1</span>
+<button class="text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item: Doro Wat -->
+<div class="flex items-center gap-gutter-grid bg-surface-bright rounded-xl p-3 border border-outline-variant/30">
+<div class="w-[80px] h-[80px] rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A traditional Ethiopian Doro Wat served in a sleek, modern, pristine white bowl. The rich, deep red stew features a tender chicken leg and a perfectly hard-boiled egg scored with shallow cuts. The styling is minimalist, focusing entirely on the vibrant colors and appetizing textures of the food against a clean, uncluttered background. Forest green accents are visible in a subtle garnish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqBEzMADVD_N-1sNNR7-24D3NMXXq3zSSS6dZvqBx3thIQT1OzISLOGdue_xXOSrI33nD5wYPlU4TEBYui-E_MqrpvG2YgM4t8LHtp5GPfdztxphV_ux5-W7T9V1MtBxvqn5LNXbSTTTyf-bwUxps_FO79bRTbqDPJKYTI2jR63xK_aihdOIPhrwKjg4DWdttgAzs8mvQlg_DRMa-6RCgyltfBpt7cyi5DPzGryLlIICZQRLl0t4Cbruu9MHHPhm7qRhuJe1pdx2Sy"/>
+</div>
+<div class="flex-1 flex flex-col justify-between h-full">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Doro Wat</h2>
+<p class="font-body-sm text-body-sm text-outline">Traditional spicy chicken stew.</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-price-display text-price-display text-primary">450 ETB</span>
+<div class="flex items-center gap-3 bg-surface-container rounded-full px-2 py-1">
+<button class="text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<span class="font-body-lg text-body-lg font-semibold w-4 text-center">1</span>
+<button class="text-on-surface hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer Summary & Action -->
+<div class="p-container-padding bg-surface border-t border-surface-variant sticky bottom-0 z-30 shadow-[0px_-4px_20px_rgba(0,0,0,0.08)]">
+<div class="flex justify-between items-end mb-stack-md">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-outline">Total Due</span>
+<span class="font-price-display text-price-display text-primary text-[24px]">800 ETB</span>
+</div>
+<div class="text-right">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Includes VAT</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-on-primary font-headline-md text-headline-md py-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span>Confirm with Waiter &amp; Pay</span>
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</div>
+</body></html>
