@@ -28,6 +28,7 @@ import {
 import { MenuItem } from '../types';
 import { useStore } from '../store';
 import { UploadButton } from '../utils/uploadthing';
+import { QRCodeSVG } from 'qrcode.react';
 
 interface AdminPanelProps {
   onExitAdmin: () => void;
@@ -814,7 +815,6 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                 const tableNum = idx + 1;
                 // Live production URL structure
                 const prodUrl = `${window.location.origin}/?table=${tableNum}`;
-                const qrCodeSrc = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&format=svg&data=${encodeURIComponent(prodUrl)}`;
                 
                 return (
                   <div
@@ -837,10 +837,13 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
 
                     {/* QR Code Container */}
                     <div className="my-4 p-3 bg-white border border-outline-variant/50 rounded-xl shadow-inner flex items-center justify-center w-[160px] h-[160px] print:border-black/20 print:shadow-none">
-                      <img
-                        src={qrCodeSrc}
-                        alt={`QR Code for Table ${tableNum}`}
-                        className="w-full h-full object-contain"
+                      <QRCodeSVG
+                        value={prodUrl}
+                        size={128}
+                        bgColor={"#ffffff"}
+                        fgColor={"#012d1d"}
+                        level={"H"}
+                        includeMargin={false}
                       />
                     </div>
 
