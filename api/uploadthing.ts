@@ -1,4 +1,6 @@
 import { createUploadthing, type FileRouter } from "uploadthing/express";
+import { createRouteHandler } from "uploadthing/express";
+import express from "express";
 
 const f = createUploadthing();
 
@@ -16,3 +18,8 @@ export const uploadRouter = {
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof uploadRouter;
+
+const app = express();
+app.use("/api/uploadthing", createRouteHandler({ router: uploadRouter }));
+
+export default app;

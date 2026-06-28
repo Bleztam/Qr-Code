@@ -1,24 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import { sql } from './db';
-import { createRouteHandler } from 'uploadthing/express';
-import { uploadRouter } from './uploadthing';
+import { sql } from './db.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Mount Uploadthing Express route
-app.use(
-  "/api/uploadthing",
-  createRouteHandler({
-    router: uploadRouter,
-    config: {
-      // It uses the env variable UPLOADTHING_TOKEN by default
-    },
-  })
-);
+
 
 // GET all menu items
 app.get('/api/menu', async (req, res) => {
