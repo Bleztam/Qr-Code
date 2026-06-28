@@ -182,7 +182,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
               <BookOpen className="w-5 h-5" />
             </span>
             <span className="font-headline-md text-headline-md text-primary tracking-tight font-extrabold">
-              FreshServe
+              Tommy Juice Bar
             </span>
           </div>
           {isSidebarOpen && (
@@ -272,7 +272,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
             >
               <MenuIcon className="w-5 h-5" />
             </button>
-            <span className="font-headline-lg-mobile text-headline-lg-mobile text-primary font-extrabold">FreshServe</span>
+            <span className="font-headline-lg-mobile text-headline-lg-mobile text-primary font-extrabold">Tommy Juice Bar</span>
             <button
               onClick={onExitAdmin}
               className="text-primary hover:bg-surface-container font-label-caps text-label-caps px-3 py-1.5"
@@ -617,7 +617,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
         {activeSubTab === 'Analytics' && (
           <div className="flex-1 p-4 lg:p-6 overflow-y-auto w-full animate-fadeIn bg-background">
             <h1 className="font-headline-lg text-headline-lg text-on-surface">Analytics</h1>
-            <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5 mb-6">Real-time stats of FreshServe operations.</p>
+            <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5 mb-6">Real-time stats of Tommy Juice Bar operations.</p>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {/* Card 1 */}
@@ -827,7 +827,7 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                       <div className="flex items-center justify-center gap-2 text-primary">
                         <Utensils className="w-5 h-5 text-primary print:text-black" />
                         <span className="font-headline-lg-mobile text-headline-lg-mobile text-primary print:text-black tracking-tight font-extrabold">
-                          FreshServe
+                          Tommy Juice Bar
                         </span>
                       </div>
                       <div className="bg-primary/10 text-primary print:text-black print:bg-transparent print:border print:border-black/30 font-label-caps text-label-caps text-xs py-1 px-3 rounded-full mt-3 inline-block font-bold">
@@ -867,6 +867,10 @@ export default function AdminPanel({ onExitAdmin }: AdminPanelProps) {
                           <span>Pay via Telebirr or CBE</span>
                         </li>
                       </ol>
+                      {/* Developer Credits */}
+                      <p className="text-[8px] font-label-caps text-label-caps text-outline print:text-black/60 mt-3 tracking-wider text-center">
+                        Developed by Orion Technologies
+                      </p>
                     </div>
                   </div>
                 );

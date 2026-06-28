@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { User, ShieldCheck, MapPin, Sparkles, LogOut } from 'lucide-react';
+import { User, ShieldCheck, MapPin, Sparkles, Instagram, Send, Globe } from 'lucide-react';
 
 interface ProfileViewProps {
   userEmail: string;
@@ -36,7 +36,7 @@ export default function ProfileView({
         </div>
         <div className="min-w-0">
           <p className="font-headline-md text-[16px] md:text-headline-md text-on-surface">Customer Session</p>
-          <p className="font-body-sm text-body-sm text-on-surface-variant truncate">{userEmail || 'guest@freshserve.com'}</p>
+          <p className="font-body-sm text-body-sm text-on-surface-variant truncate">{userEmail || 'guest@tommyjuicebar.com'}</p>
         </div>
       </div>
 
@@ -68,6 +68,49 @@ export default function ProfileView({
               </button>
             );
           })}
+        </div>
+      </div>
+
+      {/* Contact & Socials */}
+      <div className="bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-5 shadow-none mb-5 space-y-4">
+        <div className="flex items-center gap-2 text-on-surface">
+          <Globe className="w-4.5 h-4.5 text-primary" />
+          <h2 className="font-headline-md text-[16px] md:text-headline-md text-on-surface">Orion Technologies</h2>
+        </div>
+        <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          For technical support, feedback, custom solutions, or business inquiries, connect with the developers at Orion Technologies.
+        </p>
+
+        <div className="grid grid-cols-3 gap-3">
+          <a
+            href="https://instagram.com/orion_technologies"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container hover:bg-surface-variant transition-colors text-on-surface hover:text-primary gap-1 border border-outline-variant/20 cursor-pointer"
+          >
+            <Instagram className="w-5 h-5 text-primary" />
+            <span className="font-label-caps text-[10px] tracking-wide mt-1 font-semibold">Instagram</span>
+          </a>
+
+          <a
+            href="https://t.me/orion_technologies"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container hover:bg-surface-variant transition-colors text-on-surface hover:text-primary gap-1 border border-outline-variant/20 cursor-pointer"
+          >
+            <Send className="w-5 h-5 text-primary" />
+            <span className="font-label-caps text-[10px] tracking-wide mt-1 font-semibold">Telegram</span>
+          </a>
+
+          <a
+            href="https://oriontechnologies.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container hover:bg-surface-variant transition-colors text-on-surface hover:text-primary gap-1 border border-outline-variant/20 cursor-pointer"
+          >
+            <Globe className="w-5 h-5 text-primary" />
+            <span className="font-label-caps text-[10px] tracking-wide mt-1 font-semibold">Website</span>
+          </a>
         </div>
       </div>
 

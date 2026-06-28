@@ -133,7 +133,7 @@ export const useStore = create<AppState>()(
       setPaymentConfig: (config) => set({ paymentConfig: config }),
     }),
     {
-      name: 'freshserve-storage',
+      name: 'tommy-juicebar-storage',
       partialize: (state) => ({
         menuItems: state.menuItems,
         orders: state.orders,

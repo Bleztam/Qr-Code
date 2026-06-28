@@ -37,7 +37,7 @@ export default function Header({
 
         {/* Brand Name */}
         <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary-fixed-dim tracking-tight">
-          FreshServe
+          Tommy Juice Bar
         </h1>
 
         {/* Right Side Buttons: Admin Shield and Search */}

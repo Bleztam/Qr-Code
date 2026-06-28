@@ -1,5 +1,5 @@
 {
-  "name": "FreshServe",
+  "name": "Tommy Juice Bar",
   "description": "A premium fast-casual digital ordering menu and restaurant management app with interactive customer ordering and administrative menu controls.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
