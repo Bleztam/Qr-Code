@@ -83,7 +83,7 @@ export default function ProfileView({
 
         <div className="grid grid-cols-3 gap-3">
           <a
-            href="https://instagram.com/orion_technologies"
+            href="https://instagram.com/bleztam"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container hover:bg-surface-variant transition-colors text-on-surface hover:text-primary gap-1 border border-outline-variant/20 cursor-pointer"
@@ -93,7 +93,7 @@ export default function ProfileView({
           </a>
 
           <a
-            href="https://t.me/orion_technologies"
+            href="https://t.me/bleztam"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container hover:bg-surface-variant transition-colors text-on-surface hover:text-primary gap-1 border border-outline-variant/20 cursor-pointer"
@@ -103,7 +103,7 @@ export default function ProfileView({
           </a>
 
           <a
-            href="https://oriontechnologies.com"
+            href="https://oriontechnologiesskdjf.com"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container hover:bg-surface-variant transition-colors text-on-surface hover:text-primary gap-1 border border-outline-variant/20 cursor-pointer"
